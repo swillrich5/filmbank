@@ -4,10 +4,103 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <title>Document</title>
+
+         <!-- Google Fonts: show "add" as "+" and clear as "-" -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <!-- jQuery -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    
+          <!-- Materialize -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
+        <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Film Bank</title>
 </head>
 <body>
+
+     <!-- Search -->
+     <!-- Parent-1 -->
+     <div id="search-wrap" class="wrapper"> 
+        <!-- child-1 -->
+        <div id="search-cont" class="container">
+            <!-- child-1-1 -->
+            <div class="row">
+                <!-- child-1-1-1 -->
+                <div class="col s12">
+                    <!-- For topic title -->
+                    <h1 class="center-align shadow">Film Bank</h1>
+                    <!-- For Search Space -->
+                    <form class="movie-form" action="">
+                        <!-- Define search Element -->
+                        <div class="input-field sub-row">
+                            <!-- add icon -->
+                            <i class="material-icons prefix">add</i>
+                            <!-- input movie Element -->
+                            <input id="addMovie" type="text" class="validate">
+                            <!-- label to show Enter a movie to Search -->
+                            <label for="addMovie" id="comment">Enter a Movie to search</label>
+                            <!-- for movie not found (option) -->
+                            <span id="movieNotFound" class="helper-text"></span>
+                        </div> <!-- Define search Element end -->
+
+                        <!-- Search Button -->
+                        <button class="btn waves-effect waves-light button button-outline button-block" type="submit" name="action" id="compareMovies">Search</button>
+                        <!-- New Movie Area (option) -->
+                      <div id="new movies" class="sub-row"> </div>
+                      
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Pop out area -->
+    <!-- Parent-2 -->
+    <div id="results-wrap" class="wrapper">
+        <!-- Child-1 of Parent-2 clear button or icon -->
+        <a id="clear-button" class="button button-close"><i class="material-icons">clear</i></a>
+        <!-- child-2 -->
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <!-- show movie information -->
+                    <h2 class="center-align"><span id="movie-title1"></span>                     </h2>
+                    <div id="chart-container">
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   <!-- Footer -->
+
+    <footer class="page-footer">
+        <div class="container">
+          <div class="row">
+            <div class="col s12">
+              <h5 class="footer-title">Developed By:</h5>
+            </div>
+            
+          </div>
+        </div>
+        <div class="row">
+            <div class="col l12 m12 s12">
+                <ul id="credits">
+                    <li><p>develop-1</p><p><a href="https://github.com/acarlie" target="_blank">github.com/develop-1</a></p></li>
+                    <li><p>develop-2</p><p><a href="https://github.com/youngedre" target="_blank">github.com/develop-2</a></p></li>
+                    <li><p>develop-3</p><p><a href="https://github.com/mjfonke" target="_blank">github.com/develop-3</a></p></li>
+                    <li><p>develop-4</p><p><a href="https://github.com/fzachary" target="_blank">github.com/develop-4</a></p></li>
+                </ul>
+            </div>
+        </div>
+
+      </footer>
 
     
     
