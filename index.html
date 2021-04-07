@@ -39,13 +39,14 @@
                     <!-- For Search Space -->
                     <form class="movie-form" action="">
                         <!-- Define search Element -->
-                        <div class="input-field sub-row">
-                            <!-- add icon -->
-                            <i class="material-icons prefix">add</i>
+                        <!-- <div class="input-field sub-row"> -->
+                        <div class="input-field">
+                                <!-- add icon -->
+                            <!-- <i class="material-icons prefix">add</i> -->
                             <!-- input movie Element -->
-                            <input id="addMovie" type="text" class="validate">
-                            <!-- label to show Enter a movie to Search -->
-                            <label for="searchMovie" id="comment">Enter a Movie to search</label>
+                            <input id="addMovie" type="text" class="">
+                            <!-- <input id="addMovie" type="text" class="validate">                            label to show Enter a movie to Search -->
+                            <!-- <label for="searchMovie" id="comment">Enter a Movie to search</label> -->
                             <!-- for movie not found (option) -->
                             <span id="movieNotFound" class="helper-text"></span>
                         </div> <!-- Define search Element end -->
@@ -54,9 +55,7 @@
                         <button class="btn waves-effect waves-light button button-outline button-block" type="submit" name="action" id="searchMovies">Search</button>
                         <!-- New Movie Area (option) -->
                       <div id="new movies" class="sub-row"> </div>
-                      
                     </form>
-
                 </div>
             </div>
         </div>
@@ -64,25 +63,19 @@
 
     <!-- Results Pop out area -->
     <!-- Parent-2 -->
-    <div id="results-wrap" class="wrapper">
-        <!-- Child-1 of Parent-2 clear button or icon -->
-        <a id="clear-button" class="button button-close"><i class="material-icons">clear</i></a>
-        <!-- child-2 -->
         <div class="container">
             <div class="row">
-                <div class="col s12">
+                <div id="movies-div" class="collection">
                     <!-- show movie information -->
-                    <h2 class="center-align"><span id="movie-title1"></span>                     </h2>
-                    <div id="chart-container">
+
                       
-                    </div>
+
                 </div>
             </div>
         </div>
-    </div>
 
    <!-- Footer -->
-
+   <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     <footer class="page-footer">
         <div class="container">
           <div class="row">
