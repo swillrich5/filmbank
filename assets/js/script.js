@@ -87,7 +87,7 @@ function displayReviewButton(movieReview) {
             reviewButton.href = movieReview.results[0].link.url;
             reviewButton.target = "_blank";    
         }
-        else {
+        else  if (movieReview.results.length > 1) {
             for (var i = 0; i < movieReview.results.length; i++) {
                 if (movieReview.results[i].display_title === movieReviewTitle) {
                     index = i;
@@ -96,6 +96,8 @@ function displayReviewButton(movieReview) {
             }
             reviewButton.href = movieReview.results[index].link.url;
             reviewButton.target = "_blank";    
+        } else {
+            reviewButton.classList.add("disabled");
         }
     }
     column2Div.appendChild(reviewButton);
@@ -162,7 +164,7 @@ function displayMovieCast(movieCast) {
 
 function getMovieCast(movieID) {
     var tmdbAPIKey = "8e8357c629a4f6e188b08411c96a6e5b";
-    var apiURL = "https://api.themoviedb.org/3/movie/" + movieID + "/credits?api_key=" + tmdbAPIKey + "&language=en-US"
+    var apiURL = "https://api.themoviedb.org/3/movie/" + movieID + "/credits?api_key=" + tmdbAPIKey + "&language=en-US";
 
     fetch(apiURL)
     .then(function (response) {
@@ -281,11 +283,12 @@ function displaySearchResults(searchResults) {
 function fetchFirstAPI(movieName) {
     var tmdbAPIKey = "8e8357c629a4f6e188b08411c96a6e5b";
 
-    var apiURL =  "https://api.themoviedb.org/3/search/movie?api_key=" + tmdbAPIKey + "&language=en-US&page=1&include_adult=false&query=" + movieName;
+    var apiURL =  "https://api.themoviedb.org/3/search/movie?api_key=" + tmdbAPIKey + "&language=en-US&page=1&include_adult=false&query=" + movieName + "&append_to_response=credits";
     fetch(apiURL)
     .then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
+                console.log(data);
                 displaySearchResults(data);
             });
         } else {
