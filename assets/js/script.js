@@ -1,0 +1,339 @@
+    // button that kicks off the search for the movie entered
+var searchButton = document.querySelector("#searchMovies");
+    // input field where user enters the movie to be searched for
+var searchField = document.querySelector("#addMovie");
+    // div where either list of movies and single movie detail will display
+var moviesList = document.querySelector("#movies-div");
+// array to save the movie details
+var moviesArray = [];
+var streamingArray = [];
+var movieTitle = "";
+var movieReviewTitle = "";
+
+
+
+function displayWhereItsStreaming(streamingData) {
+
+    console.log("streaming.results = ", streamingData.results);
+    console.log(JSON.stringify(streamingData.results))
+    var column2Div = document.querySelector("#column2-div");
+    console.log("column2Div = " + column2Div);
+    var pTag = document.createElement("p");
+    pTag.innerHTML = "<b>Streaming Options:</b>"
+    column2Div.appendChild(pTag);
+    if (Object.keys(streamingData.results).length != 0) {
+
+        var buyStreamingProvider = document.createElement("p");
+        buyStreamingProvider.style.paddingLeft = "15px";
+        buyStreamingProvider.innerHTML = "<b>Purchase: </b>";
+        if (streamingData.results.US.buy != undefined) {
+
+            for (var i = 0; i < streamingData.results.US.buy.length; i++) {
+                buyStreamingProvider.innerHTML += streamingData.results.US.buy[i].provider_name;
+                if ((i+1) != streamingData.results.US.buy.length) {
+                    buyStreamingProvider.innerHTML += ", ";
+                }
+            }
+        } else {
+            buyStreamingProvider.innerHTML += " None";
+        }
+        column2Div.appendChild(buyStreamingProvider);  
+
+        var rentStreamingProvider = document.createElement("p");
+        rentStreamingProvider.style.paddingLeft = "15px";
+        rentStreamingProvider.innerHTML = "<b>Rent: </b>";
+        if (streamingData.results.US.rent != undefined) {
+            var rentStreamingProvider = document.createElement("p");
+            rentStreamingProvider.style.paddingLeft = "15px";
+            rentStreamingProvider.innerHTML = "<b>Rent: </b>";
+            for (var i = 0; i < streamingData.results.US.rent.length; i++) {
+                rentStreamingProvider.innerHTML += streamingData.results.US.rent[i].provider_name;
+                if ((i+1) != streamingData.results.US.rent.length) {
+                    rentStreamingProvider.innerHTML += ", ";
+                }
+            }
+        } else {
+            rentStreamingProvider.innerHTML += " None";
+        }
+        column2Div.appendChild(rentStreamingProvider);
+
+        var streamingService = document.createElement("p");
+        streamingService.innerHTML = "<b>Streaming Services: </b>";
+        streamingService.style.paddingLeft = "15px";
+        if (streamingData.results.US.flatrate != undefined) {
+            streamingService.style.paddingLeft = "15px";
+
+            for (var i = 0; i < streamingData.results.US.flatrate.length; i++) {
+                streamingService.innerHTML += streamingData.results.US.flatrate[i].provider_name;
+                if ((i+1) != streamingData.results.US.flatrate.length) {
+                    streamingService.innerHTML += ", ";
+                }
+            }
+        } else {
+            streamingService.innerHTML += " None";
+        }
+        column2Div.appendChild(streamingService);
+    } else {
+        pTag.innerHTML += " None";
+    }
+
+}
+
+
+function displayReviewButton(movieReview) {
+    var column2Div = document.querySelector("#column2-div");
+    var reviewButton = document.createElement("a");
+    var index = 0;
+    reviewButton.classList.add("btn");
+    reviewButton.innerHTML = "New York Times Movie Review";
+    if (movieReview.results != undefined) {
+        console.log(movieReview.results[0].link.url);
+        if (movieReview.results.length === 1) {
+            reviewButton.href = movieReview.results[0].link.url;
+            reviewButton.target = "_blank";    
+        }
+        else {
+            for (var i = 0; i < movieReview.results.length; i++) {
+                if (movieReview.results[i].display_title === movieReviewTitle) {
+                    index = i;
+                    break;
+                }
+            }
+            reviewButton.href = movieReview.results[index].link.url;
+            reviewButton.target = "_blank";    
+        }
+    }
+    column2Div.appendChild(reviewButton);
+}
+
+
+function getMovieReview(movieName) {
+    title = title.replace(/ /g, '+');
+    var apiURL = "https://api.nytimes.com/svc/movies/v2/reviews/search.json?query=" + title
+     + "&api-key=T0ekj9kvOB8SEbBSMMEGhVwG8wou6TDU"
+
+    fetch(apiURL)
+    .then(function (response) {
+        if (response.ok) {
+            response.json().then(function (data) {
+                console.log(data);
+                displayReviewButton(data);
+            });
+        } else {
+            alert('Error: ' + response.statusText);
+        }
+    })
+    .catch(function (error) {
+        alert('Unable to connect to TMDB API');
+    });
+};
+
+
+
+function getWhereItsStreaming(movieID) {
+    var tmdbAPIKey = "8e8357c629a4f6e188b08411c96a6e5b";
+    var apiURL = "https://api.themoviedb.org/3/movie/" + movieID + "/watch/providers" + "?api_key=" + tmdbAPIKey;
+
+    fetch(apiURL)
+    .then(function (response) {
+        if (response.ok) {
+            response.json().then(function (data) {
+                console.log("Where it's Streaming Data = ", data);   
+                displayWhereItsStreaming(data);
+                getMovieReview(title);
+            });
+        } else {
+            alert('Error: ' + response.statusText);
+        }
+    })
+    .catch(function (error) {
+        alert('Unable to connect to TMDB API');
+    });
+};
+
+
+
+function displayMovieCast(movieCast) {
+    var column2Div = document.querySelector("#column2-div");
+    var castTag = document.createElement("p");
+    column2Div.appendChild(castTag);
+    castTag.innerHTML = "<b>Cast: </b>";
+    for (var i= 0; (i <= 5 && i < movieCast.cast.length); i++) {
+        var actor = document.createElement("p");
+        actor.innerHTML = movieCast.cast[i].character + ": " + movieCast.cast[i].name;
+        column2Div.appendChild(actor);
+    }
+
+}
+
+
+function getMovieCast(movieID) {
+    var tmdbAPIKey = "8e8357c629a4f6e188b08411c96a6e5b";
+    var apiURL = "https://api.themoviedb.org/3/movie/" + movieID + "/credits?api_key=" + tmdbAPIKey + "&language=en-US"
+
+    fetch(apiURL)
+    .then(function (response) {
+        if (response.ok) {
+            response.json().then(function (data) {
+                console.log(data);
+                displayMovieCast(data);
+                getWhereItsStreaming(movieID, data);
+             });
+        } else {
+            alert('Error: ' + response.statusText);
+        }
+    })
+    .catch(function (error) {
+        alert('Unable to connect to TMDB API');
+    });
+};
+
+
+
+function findMovie(movieID) {
+    for (var i = 0; i < moviesArray.length; i++) {
+        if (moviesArray[i].id == movieID) {
+            return moviesArray[i];
+        }
+    }
+}
+
+function displayMovieDetails(movieID) {
+    moviesList.innerHTML = "";
+    var rowDiv = document.createElement("div");
+    rowDiv.classList.add("row");
+    moviesList.appendChild(rowDiv);
+
+
+    var movieTitle = document.createElement("h3");
+    movieTitle.classList.add("movie-title");
+    console.log("movidID =", movieID);
+    console.log();
+    var movie = findMovie(movieID);
+    console.log("movie = ", movie);
+    movieTitle.textContent = movie.title;
+    title = movie.title;    // workaround for getting movie review by title
+    movieReviewTitle = movie.title;
+    rowDiv.appendChild(movieTitle);
+
+
+    var columnDiv = document.createElement("div");
+    columnDiv.classList.add("col");
+    columnDiv.classList.add("s12");
+    columnDiv.classList.add("m6");
+    rowDiv.appendChild(columnDiv);
+
+    var imageDiv = document.createElement("div");
+
+    imageDiv.id = "poster-div";
+    columnDiv.appendChild(imageDiv);
+
+    var poster = document.createElement("img");
+    poster.src = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
+    imageDiv.appendChild(poster);
+
+    var column2Div = document.createElement("div");
+    column2Div.classList.add("col");
+    column2Div.classList.add("s12");
+    column2Div.classList.add("m6");
+    column2Div.id = "column2-div";
+    rowDiv.appendChild(column2Div);
+
+    var overview = document.createElement("p");
+    overview.textContent = movie.overview;
+    column2Div.appendChild(overview);
+
+    var releaseDate = document.createElement("p");
+    releaseDate.innerHTML = "<b>Release Date: </b>" + movie.release_date;
+    column2Div.appendChild(releaseDate);    
+    
+    getMovieCast(movieID);
+
+    // getWhereItsStreaming(movieID, column2Div);
+
+
+}
+
+
+
+
+function displaySearchResultsList(searchResults) {
+    console.log(searchResults);
+    for (var i = 0; i < searchResults.results.length; i++) {
+        // ****** SAVE SEARCH RESULTS INCLUDING DETAILS TO AN ARRAY *****
+        moviesArray.push(searchResults.results[i]);
+        // saveMovieDetails(searchResults.results[i]);
+        var movieListEl = document.createElement("a");
+        movieListEl.innerHTML = searchResults.results[i].title;
+        movieListEl.classList.add("collection-item");
+        // movieListEl.
+        movieListEl.id = searchResults.results[i].id;
+        moviesList.appendChild(movieListEl);
+        movieListEl.addEventListener('click', event => {
+            console.log("event.target = ", event.target.id);
+            var movieID = event.target.id;
+            displayMovieDetails(movieID);
+        })
+    }
+    console.log("moviesArray = ", moviesArray);
+}
+
+
+function displaySearchResults(searchResults) {
+
+    // if we get back more than one moview display the list
+    // if we get just one back, display its details
+    if (searchResults.results.length > 1) {
+        displaySearchResultsList(searchResults);
+    } else {
+        moviesArray.push(searchResults.results[0]);
+        displayMovieDetails(searchResults.results[0].id);
+    }
+}
+
+
+
+// make the first API call to TMDB to get the list of movies from the search
+// calls displaySearchResults to display the results of the search 
+function fetchFirstAPI(movieName) {
+    var tmdbAPIKey = "8e8357c629a4f6e188b08411c96a6e5b";
+
+    var apiURL =  "https://api.themoviedb.org/3/search/movie?api_key=" + tmdbAPIKey + "&language=en-US&page=1&include_adult=false&query=" + movieName;
+    fetch(apiURL)
+    .then(function (response) {
+        if (response.ok) {
+            response.json().then(function (data) {
+                console.log(data);
+                displaySearchResults(data);
+            });
+        } else {
+            alert('Error: ' + response.statusText);
+        }
+    })
+    .catch(function (error) {
+        alert('Error: Unable to connect to TMDB API');
+    });
+};
+
+
+
+
+var searchFormHandler = function(event) {
+    event.preventDefault();
+    movieName = searchField.value;
+    console.log(movieName);
+    movieName = movieName.replace(/ /g, '+');
+    console.log(movieName);
+    console.log("Movie Name =" + movieName);
+    if (movieName) {
+        moviesList.innerHTML = "";
+        moviesArray = [];
+        fetchFirstAPI(movieName);
+
+
+    } else {
+        alert('Please enter a movie name');
+    }
+}
+
+searchButton.addEventListener("click", searchFormHandler);
