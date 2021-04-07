@@ -13,11 +13,7 @@ var movieReviewTitle = "";
 
 
 function displayWhereItsStreaming(streamingData) {
-
-    console.log("streaming.results = ", streamingData.results);
-    console.log(JSON.stringify(streamingData.results))
     var column2Div = document.querySelector("#column2-div");
-    console.log("column2Div = " + column2Div);
     var pTag = document.createElement("p");
     pTag.innerHTML = "<b>Streaming Options:</b>"
     column2Div.appendChild(pTag);
@@ -87,7 +83,6 @@ function displayReviewButton(movieReview) {
     reviewButton.classList.add("btn");
     reviewButton.innerHTML = "New York Times Movie Review";
     if (movieReview.results != undefined) {
-        console.log(movieReview.results[0].link.url);
         if (movieReview.results.length === 1) {
             reviewButton.href = movieReview.results[0].link.url;
             reviewButton.target = "_blank";    
@@ -116,7 +111,6 @@ function getMovieReview(movieName) {
     .then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
-                console.log(data);
                 displayReviewButton(data);
             });
         } else {
@@ -138,7 +132,6 @@ function getWhereItsStreaming(movieID) {
     .then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
-                console.log("Where it's Streaming Data = ", data);   
                 displayWhereItsStreaming(data);
                 getMovieReview(title);
             });
@@ -175,7 +168,6 @@ function getMovieCast(movieID) {
     .then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
-                console.log(data);
                 displayMovieCast(data);
                 getWhereItsStreaming(movieID, data);
              });
@@ -207,10 +199,7 @@ function displayMovieDetails(movieID) {
 
     var movieTitle = document.createElement("h3");
     movieTitle.classList.add("movie-title");
-    console.log("movidID =", movieID);
-    console.log();
     var movie = findMovie(movieID);
-    console.log("movie = ", movie);
     movieTitle.textContent = movie.title;
     title = movie.title;    // workaround for getting movie review by title
     movieReviewTitle = movie.title;
@@ -249,16 +238,12 @@ function displayMovieDetails(movieID) {
     
     getMovieCast(movieID);
 
-    // getWhereItsStreaming(movieID, column2Div);
-
-
 }
 
 
 
 
 function displaySearchResultsList(searchResults) {
-    console.log(searchResults);
     for (var i = 0; i < searchResults.results.length; i++) {
         // ****** SAVE SEARCH RESULTS INCLUDING DETAILS TO AN ARRAY *****
         moviesArray.push(searchResults.results[i]);
@@ -270,12 +255,10 @@ function displaySearchResultsList(searchResults) {
         movieListEl.id = searchResults.results[i].id;
         moviesList.appendChild(movieListEl);
         movieListEl.addEventListener('click', event => {
-            console.log("event.target = ", event.target.id);
             var movieID = event.target.id;
             displayMovieDetails(movieID);
         })
     }
-    console.log("moviesArray = ", moviesArray);
 }
 
 
@@ -303,7 +286,6 @@ function fetchFirstAPI(movieName) {
     .then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
-                console.log(data);
                 displaySearchResults(data);
             });
         } else {
@@ -321,16 +303,11 @@ function fetchFirstAPI(movieName) {
 var searchFormHandler = function(event) {
     event.preventDefault();
     movieName = searchField.value;
-    console.log(movieName);
     movieName = movieName.replace(/ /g, '+');
-    console.log(movieName);
-    console.log("Movie Name =" + movieName);
     if (movieName) {
         moviesList.innerHTML = "";
         moviesArray = [];
         fetchFirstAPI(movieName);
-
-
     } else {
         alert('Please enter a movie name');
     }
