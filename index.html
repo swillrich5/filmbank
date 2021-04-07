@@ -5,74 +5,65 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-         <!-- Google Fonts: show "add" as "+" and clear as "-" -->
+    <!-- Google Fonts: show "add" as "+" and clear as "-" -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@1,500;1,700&display=swap" rel="stylesheet">
+
+    <!-- Materialize -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-        <!-- jQuery -->
-        <script
-        src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-        crossorigin="anonymous"></script>
-    
-          <!-- Materialize -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    
+    <!-- Animate.css -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
+    <link rel="stylesheet" href="./assets/css/style.css">
 
-        <link rel="stylesheet" href="./assets/css/style.css">
-    <title>Film Bank</title>
+    <title>FilmBank</title>
 </head>
 <body>
-
-     <!-- Search -->
-     <!-- Parent-1 -->
-     <div id="search-wrap" class="wrapper"> 
-        <!-- child-1 -->
-        <div id="search-cont" class="container">
-            <!-- child-1-1 -->
-            <div class="row">
-                <!-- child-1-1-1 -->
-                <div class="col s12">
-                    <!-- For topic title -->
-                    <h1 class="center-align shadow">Film Bank</h1>
-                    <!-- For Search Space -->
-                    <form class="movie-form" action="">
-                        <!-- Define search Element -->
-                        <!-- <div class="input-field sub-row"> -->
-                        <div class="input-field">
-                                <!-- add icon -->
-                            <!-- <i class="material-icons prefix">add</i> -->
-                            <!-- input movie Element -->
-                            <input id="addMovie" type="text" class="">
-                            <!-- <input id="addMovie" type="text" class="validate">                            label to show Enter a movie to Search -->
-                            <!-- <label for="searchMovie" id="comment">Enter a Movie to search</label> -->
-                            <!-- for movie not found (option) -->
-                            <span id="movieNotFound" class="helper-text"></span>
-                        </div> <!-- Define search Element end -->
-
-                        <!-- Search Button -->
-                        <button class="btn waves-effect waves-light button button-outline button-block" type="submit" name="action" id="searchMovies">Search</button>
-                        <!-- New Movie Area (option) -->
-                      <div id="new movies" class="sub-row"> </div>
-                    </form>
-                </div>
-            </div>
+    <header>
+        <div class="slider">
+          <ul class="slides">
+            <li>
+              <img src="./assets/images/projector.gif"> 
+              <div class="caption">
+                <h1 class="right animate__animated animate__slideInRight">FilmBank</h1>
+              </div>
+            </li>
+          </ul>
         </div>
-    </div>
+    </header>   
+    <!-- For Search Space -->
+    <form class="movie-form" action="">
+        <!-- Define search Element -->
+        <!-- <div class="input-field sub-row"> -->
+        <div class="input-field">
+                <!-- add icon -->
+            <!-- <i class="material-icons prefix">add</i> -->
+            <!-- input movie Element -->
+            <input id="addMovie" type="text" class="">
+            <!-- <input id="addMovie" type="text" class="validate">                            label to show Enter a movie to Search -->
+            <!-- <label for="searchMovie" id="comment">Enter a Movie to search</label> -->
+            <!-- for movie not found (option) -->
+            <span id="movieNotFound" class="helper-text"></span>
+        </div> <!-- Define search Element end -->
+
+        <!-- Search Button -->
+        <button class="btn waves-effect waves-light button button-outline button-block" type="submit" name="action" id="searchMovies">Search</button>
+        <!-- New Movie Area (option) -->
+        <div id="new movies" class="sub-row"> </div>
+    </form>
 
     <!-- Results Pop out area -->
     <!-- Parent-2 -->
-        <div class="container">
-            <div class="row">
-                <div id="movies-div" class="collection">
-                    <!-- show movie information -->
-
-                      
-
-                </div>
+    <div class="container">
+        <div class="row">
+            <div id="movies-div"    class="collection">
+                <!-- show movie information -->
             </div>
         </div>
+    </div>
 
    <!-- Footer -->
    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
@@ -98,8 +89,13 @@
 
       </footer>
 
-    
-    
+    <!-- Materialize -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- jQuery -->
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
     <script src="./assets/js/script.js"></script>
 </body>
 </html>
