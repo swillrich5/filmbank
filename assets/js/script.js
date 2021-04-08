@@ -20,6 +20,7 @@ var searchButton = document.querySelector("#searchMovies");
 var searchField = document.querySelector("#addMovie");
     // div where either list of movies and single movie detail will display
 var moviesList = document.querySelector("#movies-div");
+var emptyInput = document.querySelector("#addMovie");
 // array to save the movie details
 var moviesArray = [];
 var streamingArray = [];
@@ -352,8 +353,9 @@ var searchFormHandler = function(event) {
         moviesArray = [];
         fetchFirstAPI(movieName);
     } else {
-        // alert('Please enter a movie name');
-    }
+        document.emptyInput.setProperty('--animate-furation', '2s');
+           
+         }
 }
 
 searchButton.addEventListener("click", searchFormHandler);
