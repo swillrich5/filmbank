@@ -49,7 +49,8 @@ p {
   border-radius: 10px;
   margin-left: auto;
   margin-right: auto;
-  max-width: 85%;
+  max-width: 80%;
+  // yihsien change from 85% to 80% in order to align input-field/search/and restart
 }
 
 .input-field {
@@ -99,6 +100,13 @@ h4 {
     h4 {
        font-size: 24px;
     }
+}
+
+#restart {
+  background-color: cadetblue;
+  border: solid rgb(201, 185, 15) 2px;
+  margin-left: 10px;
+  border-radius: 10px;
 }
     
 
