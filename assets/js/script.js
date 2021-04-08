@@ -21,6 +21,7 @@ var searchField = document.querySelector("#addMovie");
     // div where either list of movies and single movie detail will display
 var moviesList = document.querySelector("#movies-div");
 // array to save the movie details
+var searchForm = document.querySelector("#search-form");
 var moviesArray = [];
 var streamingArray = [];
 var movieTitle = "";
@@ -34,7 +35,6 @@ function displayWhereItsStreaming(streamingData) {
     pTag.innerHTML = "<b>Streaming Options:</b>"
     column2Div.appendChild(pTag);
     if (Object.keys(streamingData.results).length != 0)  {
-        console.log(streamingData)
         var buyStreamingProvider = document.createElement("p");
         buyStreamingProvider.style.paddingLeft = "15px";
         buyStreamingProvider.innerHTML = "<b>Purchase: </b>";
@@ -328,7 +328,6 @@ function fetchFirstAPI(movieName) {
     .then(function (response) {
         if (response.ok) {
             response.json().then(function (data) {
-                console.log(data);
                 displaySearchResults(data);
             });
         } else {
@@ -352,8 +351,10 @@ var searchFormHandler = function(event) {
         moviesArray = [];
         fetchFirstAPI(movieName);
     } else {
-        // alert('Please enter a movie name');
+
     }
 }
 
 searchButton.addEventListener("click", searchFormHandler);
+
+searchForm.addEventListener("submit", searchFormHandler);
