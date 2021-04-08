@@ -1,6 +1,6 @@
  // Header (slider) with jQuery
  $(document).ready(function(){
-    $('.slider').slider();
+    $('.slider').slider(indicators=false);
   });
         
   // Carousel with jQuery
