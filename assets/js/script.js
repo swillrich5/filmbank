@@ -328,7 +328,7 @@ var searchFormHandler = function(event) {
         moviesArray = [];
         fetchFirstAPI(movieName);
     } else {
-        alert('Please enter a movie name');
+        // alert('Please enter a movie name');
     }
 }
 

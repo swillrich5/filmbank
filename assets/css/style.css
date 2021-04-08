@@ -13,9 +13,11 @@ body {
 }  */
 
 h1 {
-    font-size: 100px;
+    max-height: 100%;
+    max-width: 100%;
     margin-top: 160px;
     margin-left: auto;
+    margin-right: auto;
     color:rgb(201, 185, 15);
     padding-left: 60px;
     background-color: rgba(0, 0, 0, 0.495);
@@ -25,11 +27,15 @@ h1 {
     z-index: 1;
 }
 
+.caption {
+  max-height: 100%;
+  max-width: 100%;
+}
+
 /* ACCESS JS CREATED ELEMENTS */
 #poster-div img {
-  height: auto;
-  width: auto;
-
+  max-width: 100%; 
+  max-height: 100%;
 }
 
 p {
@@ -62,12 +68,13 @@ p {
 }
 .carousel-item {
     width: 300px !important;
+    height: 100%;
 }
 
-.carousel {
-    width: 100% !important;
-    height: 600px !important;
-
+h4 {
+    font-family: 'Rubik';
+    color:rgb(201, 185, 15);
+    padding-left: 15px;
 }
 
 .slider {
