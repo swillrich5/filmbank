@@ -24,7 +24,7 @@ THEN I see a listing of streaming providers
 ---
 ## Application Images
 
-![Opening Screen](./assets/images/filmbank-opening-screen.jpg "Opening Screen")
+![Opening Screen](./assets/images/filmbank-opening-screen.png "Opening Screen")
 
 Opening Screen
 
@@ -33,7 +33,7 @@ Opening Screen
 Multiple Movie Search Results
 
 
-![Single Movie Search Results](./assets/images/filmbank-single-search-results.png "Single Movie Search Results")
+![Single Movie Search Results](./assets/images/starwars.png "Single Movie Search Results")
 
 Single Movie Search Results
 
@@ -46,6 +46,7 @@ FilmBank was built using:
   * HTML 
   * Materialize CSS 
   * css 
+  * Animate.css
   * JavaScript, 
   * The Movie Database API (https://developers.themoviedb.org/3/getting-started/introduction)
   * The New York Times Moview Review API (https://developer.nytimes.com/docs/movie-reviews-api/1/overview)
