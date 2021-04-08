@@ -1,12 +1,100 @@
-.col {
-    border: 2px sold red;
+body {
+    font-family: 'Rubik', sans-serif;
+    background-color: rgb(14, 18, 18); 
+} 
+
+/* .video-container {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+}  */
+
+h1 {
+    max-height: 100%;
+    margin-top: 160px;
+    margin-left: auto;
+    margin-right: auto;
+    color:rgb(201, 185, 15);
+    padding-left: 60px;
+    background-color: rgba(0, 0, 0, 0.495);
+    border: solid rgb(201, 185, 15) 4px;
+    border-radius: 10px;
+    padding: 10px;
+    z-index: 1;
 }
 
-h3 {
-    text-align: center;
+.caption {
+  max-height: 100%;
+  max-width: 100%;
 }
 
-img {
-    max-width: 100%;
-    max-height: 100%
+/* ACCESS JS CREATED ELEMENTS */
+#poster-div img {
+  max-width: 100%; 
+  max-height: 100%;
 }
+
+p {
+  color: white;
+}
+
+#addMovie {
+  background-color: rgba(255, 255, 255, 0.516);
+  font-family: 'Montserrat';
+  padding-left: 15px;
+  border: solid rgb(201, 185, 15) 2px;
+  border-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 85%;
+}
+
+
+.btn {
+  background-color: cadetblue;
+  border: solid rgb(201, 185, 15) 2px;
+  padding-left: 50px;
+}
+
+#movies-div a {
+  background-color: rgb(43, 43, 43);
+}
+
+.movie-title {
+  font-family: 'Rubik';
+  color: white;
+}
+.carousel-item {
+    width: 300px !important;
+    height: 100%;
+}
+
+h4 {
+    font-family: 'Rubik';
+    color:rgb(201, 185, 15);
+    padding-left: 15px;
+}
+
+.slider {
+    height:300px !important;
+    margin-bottom: 100px;
+    align-items: center;
+    justify-content: center;
+}
+
+
+@media only screen and (max-width: 620px) {
+    #addMovie {
+        width: 70%;
+        padding: 0 6px;
+    }
+    h1 {
+      float: center;
+    }
+    h4 {
+       font-size: 24px;
+    }
+}
+    
