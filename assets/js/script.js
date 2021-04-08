@@ -1,4 +1,20 @@
-    // button that kicks off the search for the movie entered
+ // Header (slider) with jQuery
+ $(document).ready(function(){
+    $('.slider').slider();
+  });
+        
+  // Carousel with jQuery
+  $(document).ready(function(){
+    $('.carousel').carousel({
+    });
+    autoplay();
+    function autoplay() {
+      $('.carousel').carousel('next');
+      setTimeout(autoplay, 3000);
+  }
+  });
+
+// button that kicks off the search for the movie entered
 var searchButton = document.querySelector("#searchMovies");
     // input field where user enters the movie to be searched for
 var searchField = document.querySelector("#addMovie");
