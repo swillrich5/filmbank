@@ -34,8 +34,8 @@ function displayWhereItsStreaming(streamingData) {
     var pTag = document.createElement("p");
     pTag.innerHTML = "<b>Streaming Options:</b>"
     column2Div.appendChild(pTag);
-    if (Object.keys(streamingData.results).length != 0) {
-
+    if (Object.keys(streamingData.results).length != 0)  {
+        console.log(streamingData)
         var buyStreamingProvider = document.createElement("p");
         buyStreamingProvider.style.paddingLeft = "15px";
         buyStreamingProvider.innerHTML = "<b>Purchase: </b>";
@@ -117,6 +117,7 @@ function displayReviewButton(movieReview) {
             reviewButton.classList.add("disabled");
         }
     }
+    reviewButton.style.display = "block";
     column2Div.appendChild(reviewButton);
 }
 
@@ -141,6 +142,28 @@ function getMovieReview(movieName) {
     });
 };
 
+function addFavoriteCheckbox() {
+    var favoriteCheckbox = document.createElement("input");
+    var favoriteCheckboxLabel = document.createElement("label");
+    var br = document.createElement("br");
+    var column2Div = document.querySelector("#column2-div");
+    favoriteCheckbox.id = "favorite";
+    favoriteCheckbox.type = "checkbox";
+    favoriteCheckbox.value = "favorite";
+    favoriteCheckbox.name = "favorite";
+    favoriteCheckboxLabel.htmlFor = "favorite";
+    favoriteCheckboxLabel.appendChild(document.createTextNode("Favorite"));
+    // favoriteCheckbox.style.visibility = "visible";
+    // favoriteCheckbox.style.disabled = "false";
+
+    
+    column2Div.appendChild(favoriteCheckbox);
+    column2Div.appendChild(favoriteCheckboxLabel);
+
+    column2Div.appendChild(br);
+    column2Div.appendChild(br);
+}
+
 
 
 function getWhereItsStreaming(movieID) {
@@ -153,6 +176,7 @@ function getWhereItsStreaming(movieID) {
             response.json().then(function (data) {
                 displayWhereItsStreaming(data);
                 getMovieReview(title);
+                addFavoriteCheckbox();
             });
         } else {
             alert('Error: ' + response.statusText);
