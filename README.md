@@ -38,6 +38,17 @@ Multiple Movie Search Results
 Single Movie Search Results
 
 ---
+## User Flow Diagram
+
+![User Flow Diagram](./assets/images/FilmBankUserFlowDiagram.png "User Flow Diagram")
+
+---
+
+### Wireframe
+
+---
+![Wireframe](./assets/images/Group-1_FilmBank_wireframing_v1.png "Wireframe")
+
 
 ## Technologies in Use
 
